@@ -1,29 +1,40 @@
-// added search field + clear button
+import { useState, useEffect } from "react";
+
 function TodosViewForm({
   sortField,
   setSortField,
   sortDirection,
   setSortDirection,
-  queryString, 
-  setQueryString, 
+  queryString,
+  setQueryString,
 }) {
+  // Local state for debounce
+  const [localQueryString, setLocalQueryString] = useState(queryString);
+
+  // Prevent form refresh
   const preventRefresh = (e) => e.preventDefault();
+
+  // Debounce search input 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      setQueryString(localQueryString);
+    }, 500);
+
+    return () => clearTimeout(debounce);
+  }, [localQueryString, setQueryString]);
 
   return (
     <form onSubmit={preventRefresh}>
       <div>
-        <label>
-          Search todos:{" "}
-          <input
-            type="text"
-            value={queryString}
-            onChange={(e) => setQueryString(e.target.value)}
-          />
-        </label>
+        <label>Search todos: </label>
+        <input
+          type="text"
+          value={localQueryString}
+          onChange={(e) => setLocalQueryString(e.target.value)}
+        />
         <button
           type="button"
-          onClick={() => setQueryString("")} // Clear search
-          style={{ marginLeft: "0.5rem" }}
+          onClick={() => setLocalQueryString("")} // clears input
         >
           Clear
         </button>
@@ -32,27 +43,27 @@ function TodosViewForm({
       <br />
 
       <div>
-        <label>
-          Sort by{" "}
-          <select
-            value={sortField}
-            onChange={(e) => setSortField(e.target.value)}
-          >
-            <option value="title">Title</option>
-            <option value="createdTime">Time added</option>
-          </select>
-        </label>
+        <label>Sort by: </label>
+        <select
+          value={sortField}
+          onChange={(e) => setSortField(e.target.value)}
+        >
+          <option value="title">Title</option>
+          <option value="createdTime">Time Added</option>
+        </select>
+      </div>
 
-        <label style={{ marginLeft: "1rem" }}>
-          Direction{" "}
-          <select
-            value={sortDirection}
-            onChange={(e) => setSortDirection(e.target.value)}
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </label>
+      <br />
+
+      <div>
+        <label>Direction: </label>
+        <select
+          value={sortDirection}
+          onChange={(e) => setSortDirection(e.target.value)}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
       </div>
     </form>
   );
