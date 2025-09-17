@@ -3,6 +3,8 @@ import TodoList from './features/TodoList/TodoList';
 import TodoForm from "./features/TodoForm";
 import TodoListItem from "./features/TodoList/TodoListItem";
 import TodosViewForm from "./features/TodosViewForm";
+import styles from "./App.module.css";
+import "./App.css";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -27,7 +29,7 @@ function App() {
     }
 
     return encodeURI(`${url}?${sortQuery}${searchQuery}`);
-  }, [sortField, sortDirection, queryString, url]); // includes all dependencies
+  }, [sortField, sortDirection, queryString]); // includes all dependencies
 
   // Load todos from Airtable
   useEffect(() => {
@@ -156,9 +158,10 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Todo App</h1>
-      <TodoForm onAddTodo={addTodo} isSaving={isSaving} />
+    <div className={styles.container}>
+      <div className={styles.appBox}>
+        <h1>Todo App</h1>
+        <TodoForm onAddTodo={addTodo} isSaving={isSaving} />
 
       <TodoList
         todoList={todoList}
@@ -186,7 +189,9 @@ function App() {
         </div>
       )}
     </div>
-  );
+    </div>
+     );
 }
+
 
 export default App;

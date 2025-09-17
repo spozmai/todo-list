@@ -1,4 +1,31 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 1rem 0;
+  padding: 10px;
+`;
+
+const StyledSelect = styled.select`
+  padding: 6px;
+  border-radius: 4px;
+`;
+
+const StyledInput = styled.input`
+  padding: 6px;
+  border-radius: 4px;
+`;
+
+const StyledButton = styled.button`
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  background: #dc3545;
+  color: white;
+`;
 
 function TodosViewForm({
   sortField,
@@ -24,7 +51,7 @@ function TodosViewForm({
   }, [localQueryString, setQueryString]);
 
   return (
-    <form onSubmit={preventRefresh}>
+    <StyledForm onSubmit={preventRefresh}>
       <div>
         <label>Search todos: </label>
         <input
@@ -65,7 +92,7 @@ function TodosViewForm({
           <option value="desc">Descending</option>
         </select>
       </div>
-    </form>
+    </StyledForm>
   );
 }
 
