@@ -1,0 +1,21 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.appBox {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.errorBox {
+  border: 1px solid red;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #ffe5e5;
+}
