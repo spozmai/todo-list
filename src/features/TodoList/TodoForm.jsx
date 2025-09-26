@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TextInputWithLabel from "../shared/TextInputWithLabel";
+import TextInputWithLabel from "../../shared/TextInputWithLabel";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
