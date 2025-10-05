@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #a3badc57; 
+  background-color: #728cb457; 
   font-family: "Arial", sans-serif;
   color: #232020;
 }
@@ -23,6 +23,7 @@ button {
   color: white;
   cursor: pointer;
   transition: background-color 0.2s ease;
+ 
 }
 
 button:hover {
